@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" ng-app="angular">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../../vendor/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../app/app.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.clearfix {
+				*zoom: 1;
+			}
+			.clearfix:after {
+				content: '\200B';
+				display: block;
+				height: 0;
+				clear: both;
+			}
+		</style>
+		<title>angular demo</title>
+	</head>
+
+	<body ng-controller="testSelect">
+		<p>这是angular 测试，测试select option{{testN}}</p>
+		<span ng-bind="testN"></span>
+		<input type="text" ng-model="testN" />
+		<div>
+			<ng-form>
+				<label>name</label>
+				<input type="text" ng-model="user.name" />
+				<label>age</label>
+				<input type="text" ng-model="user.age" />
+				<label>sex</label>
+				<input type="text" ng-model="user.sex" />
+				<select ng-model='sex'>
+					<option value="m">male</option>
+					<option value="fm">female</option>
+				</select>
+				<div class="clearfix"></div>
+				<p>测试动态option</p>
+				<!--指定默认选中项时，只需要把相应的ng-model设置成需要的值就行，ngoption会自动显示相应的label
+				如selected=23，则显示张四-->
+				<select ng-model='selected' ng-options="u.age as u.name group by u.sex for u in option">
+				  <option value="">--no select--</option>
+				</select>
+				<div ng-repeat="u in option">
+					<span>{{u.age}}</span>
+				</div>
+				<button ng-click="show(user)">提交</button>
+			</ng-form>
+
+		</div>
+	</body>
+
+</html>
