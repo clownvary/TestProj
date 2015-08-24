@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="direc">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../vendor/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../app/directive.js"></script>
+    <title></title>
+</head>
+<body>
+<!--<my-directive value="http://www.baidu.com" text="百度s"></my-directive>-->
+<div ng-controller='MainController' ng-init="myProperty='Hello World!'">
+    外部: {{ myProperty}}
+    <input ng-model="myProperty" />
+    <div my-directive myProperty="inner"></div>
+
+</div>
+</body>
+</html>
