@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/clownvary/TestProj/issues"
   },
-  "homepage": "https://github.com/clownvary/TestProj#readme"
+  "homepage": "https://github.com/clownvary/TestProj#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rev": "^5.1.0",
+    "gulp-rev-collector": "^1.0.0",
+    "gulp-uglify": "^1.2.0"
+  }
 }

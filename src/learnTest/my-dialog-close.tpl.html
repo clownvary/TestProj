@@ -1,0 +1,7 @@
+<div class="alert">
+    <a href class="close" ng-click="close2()">&times;</a> <!-- close2是scope内定义的，要以方法的形式带调用,就是一个变量-->
+    <div ng-transclude></div>
+</div>
+<!--如果直接写出下面的，是不行的,因为访问不到上级的controller里定义的hideDialog-->
+<!--<a href class="close" ng-click="hideDialog()">&times;</a>-->
+<!--要这样写必须 设置 指令 scope 为false,或true-->

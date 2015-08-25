@@ -14,5 +14,12 @@
     <div my-directive myProperty="inner"></div>
 
 </div>
+<div ng-controller="Controller">
+    <!--仔细看这个例子，非常好的解释了scope的使用场景和&用法-->
+    <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog()">
+        Check out the contents, {{name}}!
+    </my-dialog>
+</div>
+
 </body>
 </html>
