@@ -33,6 +33,33 @@ angular.module("direc", [])
     .controller('MainController', ['$scope', function ($scope) {
         $scope.myProperty = "innner ok";
     }])
+    .controller('Controller', ['$scope', '$timeout', function ($scope, $timeout) {
+        $scope.name = 'Tobias';
+        $scope.hideDialog = function () {
+            $scope.dialogIsHidden = true;
+            $timeout(function () {
+                $scope.dialogIsHidden = false;
+            }, 2000);
+        };
+    }])
+    .directive('myDialog', function () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {
+                'close2': '&onClose'//通过这种写法就间接的和controller里的已定义的回调挂上勾，如果直接把事件写在模板里，是访问不到controller里的方法的
+            },//scope可以在这定义，也能在controller里修改，但一般不用controller
+            controller:function($scope)
+            {
+            	$scope.getName=function(){
+            		alert('mingc');
+            	}
+            },
+            //scope:false,.//当然如果这样就可以访问得到
+            templateUrl: 'my-dialog-close.tpl.html'
+        };
+    })
+
 //.directive('myDirective',function(){
 //        return{
 //            restrict:'EAC',
@@ -47,6 +74,11 @@ angular.module("direc", [])
 //            template:'<a href="http://www.baidu.com">{{text}}</a>'
 //        }
 //    })
+    .service('person', function () {
+        this.getName = function (name) {
+            return "你的名字是" + name;
+        }
+    })
     .directive('myDirective', function () {
         return {
             restrict: 'A',
@@ -56,9 +88,4 @@ angular.module("direc", [])
             priority: 100,
             template: '<div>内部:{{ myProperty }}<input ng-model="myProperty"/></div>'
         };
-    })
-    .service('person', function () {
-        this.getName = function (name) {
-            return "你的名字是" + name;
-        }
     });

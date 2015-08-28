@@ -21,11 +21,10 @@ angular.module("direc", [])
             scope: {
                 'close2': '&onClose'//通过这种写法就间接的和controller里的已定义的回调挂上勾，如果直接把事件写在模板里，是访问不到controller里的方法的
             },//scope可以在这定义，也能在controller里修改，但一般不用controller
-            controller:function($scope)
-            {
-            	$scope.getName=function(){
-            		alert('mingc');
-            	}
+            controller: function ($scope) {
+                $scope.getName = function () {
+                    alert('mingc');
+                }
             },
             //scope:false,.//当然如果这样就可以访问得到
             templateUrl: 'my-dialog-close.tpl.html'
@@ -51,13 +50,19 @@ angular.module("direc", [])
             return "你的名字是" + name;
         }
     })
-    .directive('myDirective', function () {
-        return {
-            restrict: 'A',
-            scope: {
-                myProperty: '='
-            },//切换为{}，true,false测试
-            priority: 100,
-            template: '<div>内部:{{ myProperty }}<input ng-model="myProperty"/></div>'
+    .filter('interpolate', function () {
+        return function (text) {
+            return text+'格式化';
         };
-    });
+    })
+.
+directive('myDirective', function () {
+    return {
+        restrict: 'A',
+        scope: {
+            myProperty: '='
+        },//切换为{}，true,false测试
+        priority: 100,
+        template: '<div>内部:{{ myProperty }}<input ng-model="myProperty"/></div>'
+    };
+});
