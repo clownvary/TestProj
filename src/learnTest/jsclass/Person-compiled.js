@@ -19,7 +19,6 @@ var Person = (function () {
 
     _createClass(Person, [{
         key: 'getName',
-        //动态计算属性
         value: function getName() {
             return '名字是' + this.name;
         }

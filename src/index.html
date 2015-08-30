@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <script src="../vendor/angular.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/directive.js" type="text/javascript"></script>
     <script src="app/app.js" type="text/javascript" charset="utf-8"></script>
@@ -48,6 +47,7 @@
         <select ng-model='selected' ng-options="u.age as u.name group by u.sex for u in option">
             <option value="">--no select--</option>
         </select>
+        <p>选中的值是{{selected}}</p>
 
         <div ng-repeat="u in option">
             <span>{{u.age}}</span>
