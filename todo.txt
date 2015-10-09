@@ -1,3 +1,2 @@
-测试jasmine
-封装jquery
+
 试试fis

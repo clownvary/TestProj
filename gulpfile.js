@@ -6,7 +6,11 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var revCollector = require('gulp-rev-collector');
-var rename = require('gulp-rename');
+//var rename = require('gulp-rename');
+var karma = require('gulp-karma');
+
+
+
 gulp.task('concatjs', function () {
     gulp.src(['src/app/app.js', 'src/app/directive.js'])
         .pipe(concat('main.js'))
@@ -35,5 +39,23 @@ gulp.task('combineJquery', function () {
             extname: '.js'
         }))
         .pipe(gulp.dest('./src/dist/cob/'));
+});
+var testFiles=[
+    '../vendor/angular.min.js',//angular和mock都要包含
+    '../vendor/angular-mock.js',
+    '../src/app/*.js',
+    '*.test.js',//测试文件也要包含
+];
+gulp.task('test', function() {
+    // Be sure to return the stream
+    return gulp.src(testFiles)
+        .pipe(karma({
+            configFile: 'test/karma.config.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        });
 });
 gulp.task("default", ['concatjs', 'rev']);

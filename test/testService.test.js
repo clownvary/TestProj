@@ -42,7 +42,7 @@ describe('TestSer', function () {
         expect(x).toBeTruthy();
         expect(a).not.toBeTruthy();
     });
-    fit("应该返回一个异常", function () {
+    it("应该返回一个异常说", function () {
         var foo = function() {
             throw new TypeError("foo bar baz");
         };

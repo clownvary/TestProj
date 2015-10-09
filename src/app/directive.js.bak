@@ -59,11 +59,10 @@ angular.module("direc", [])
 directive('myDirective', function () {
     return {
         restrict: 'A',
-        //scope: {
-          //  myProperty: '='
-        //},//切换为{}，true,false测试
-        scope:false,
-		priority: 100,
+        scope: {
+            myProperty: '='
+        },//切换为{}，true,false测试
+        priority: 100,
         template: '<div>内部:{{ myProperty }}<input ng-model="myProperty"/></div>'
     };
 });
