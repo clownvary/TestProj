@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" ng-app="CSSClasses">
+<head>
+    <meta charset="UTF-8">
+    <title>CSSClasses</title>
+    <style type="text/css">
+        .ng-cloak {
+            display: none;
+        }
+         .css-form input.ng-invalid.ng-dirty {
+            background-color: #fa787e;
+        }
+        /*.css-form input.ng-valid {
+            background-color: #78fa89;
+        }*/
+        .test{
+        	background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="MyCtrl" class="ng-cloak">
+    <form novalidate class="css-form" name="formName"  >
+        名字: <input ng-model="user.name" type="tel" required name="name"  ><br/>
+        <p ng-show="formName.name.$invalid">电话不对</p>
+        Email: <input ng-model="user.email" type="email" required><br/>
+          <input memail name="user_email" ng-model="user.email" required class="form-control" placeholder="自定义验证，多个邮箱地址，以“；”或者“;”分割" />
+                    验证通过：{{custom_form.user_email.$valid}}
+        <p ng-show="formName.user_email.$error.memail">不合法的屬性</p>
+        性别: <input value="男" ng-model="user.gender" type="radio">男
+        <input value="女" ng-model="user.gender" type="radio">女
+        <br/>
+        <button ng-click="reset()">RESET</button>
+        <button ng-click="update(user)">SAVE</button>
+    </form>
+    <pre>form = {{user | json}}</pre>
+    <pre>saved = {{saved | json}}</pre>
+    
+   
+</div>
+		<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var app = angular.module("CSSClasses", []);
+      angular.module("myTest", [])
+   app.directive('memail', function () {
+      return {
+          require: "ngModel",
+          link: function (scope, element, attr, ngModel) {
+              if (ngModel) {
+                  var emailsRegexp = /^([a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*[;；]?)+$/i;
+              }
+              var customValidator = function (value) {
+                  var validity = ngModel.$isEmpty(value) || emailsRegexp.test(value);
+                  ngModel.$setValidity("memail", validity);//设置什么时候通过什么时候不通过
+                  return validity ? value : undefined;//意思是如果验证通过，返回输入的值，否则返回undefined
+              };
+              ngModel.$formatters.push(customValidator);
+              ngModel.$parsers.push(customValidator);
+          }
+      };
+  })
+    app.controller("MyCtrl", function ($scope,$window) {
+        $scope.saved = {};
+        $scope.update = function(user) {
+            $scope.saved = angular.copy(user);
+        };
+
+        $scope.reset = function() {
+            $scope.user = angular.copy($scope.saved);
+        };
+
+        $scope.reset();
+        //不合法的值将不会进入user
+    });
+  
+</script>
+</body>
+</html>

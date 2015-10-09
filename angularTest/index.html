@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<input type="text" placeholder="输入值" ng-model="xname" ng-init="xname='ssss'" />
+		<span ng-init="xname=''">这是新的{{xname}}</span>
+		<br/>
+		<div ng-controller="playcon">
+			<ol>
+				<li ng-repeat="p in roommates">{{p.name}}</li>
+			</ol>
+			<div ng-controller="mycontroller">
+				<button ng-click="testSer()" ng-init="tt=1" ng-show="tt">{{person.name}}</button>
+			</div>
+
+			<button ng-click="k.play('s')" ng-show="!playing">play</button>
+			<button ng-click="k.stop('s')" ng-show="playing">stop</button>
+			playing audio:<b>{{playing}}</b>
+			<p>{{["sds","Afsdfe","efgr"]|filter:testFilter}}</p>
+			<p>{{"Adsdsssd"|filter:filter2}}</p>
+			<p>{{"1234567890d"|limitTo:2}}</p>
+			<p>{{"1234567890d"|filter2:4:5}}</p>
+		</div>
+
+	</body>
+
+</html>

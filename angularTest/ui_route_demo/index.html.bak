@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <script src="../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+       <script src="CtrModule.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app.js"></script>
+
+    
+
+    <title></title>
+    <style type="text/css">
+    	.active{
+    		color:red;
+    	}
+    </style>
+  </head>
+  <!-- apply our angular app to our site -->
+  <body ng-app="routerApp">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+      	{{message}}
+        <a class="navbar-brand" ui-sref="#">AngularUI Router</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ui-sref-active-eq="active" >
+          <a ui-sref="home">Home</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="home.list({ttt:2})">Abouts</a>
+        </li>
+         <li ui-sref-active="active">
+          <a ui-sref="home.list.go({ttt:3})">go</a>
+        </li>
+          <li ui-sref-active="active">
+          <a ui-sref="paragraph">par</a>
+        </li>
+           <li ui-sref-active="active">
+          <a ui-sref="abouts">about</a>
+        </li>
+      </ul>
+    </nav>
+       <div class="container">
+      <!--<div ui-view="">
+      
+      </div>-->
+       <div ui-view="">
+      
+      </div>
+    </div>
+     </body>
+</html>

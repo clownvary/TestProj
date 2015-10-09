@@ -1,0 +1,51 @@
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>$routeProvide example - CodePen</title>
+  </head>
+
+  <body>
+    <div ng-app="pathApp" ng-controller="MainCtrl">
+
+  Choose your option:
+        <br />
+      <br />
+      <a href="/Book/Edit">Edit</a>
+ |
+        <a href="/Book/Delete">Delete</a>
+ |
+        <a href="/Book/Add">Add</a>
+ |
+        <a href="/Book/Show">Show</a>
+      <div ng-view=""></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.7/angular.min.js"></script>
+    <script>angular.module('pathApp',[] ,function($routeProvider, $locationProvider){
+  $routeProvider
+  .when('/Book/Edit', {
+    template: '<div>Edit</div>',
+  })
+  .when('/Book/Delete', {
+    template: '<div>Delete</div>',
+  })
+  .when('/Book/Show', {
+    template: '<div>Show</div>',
+  })
+  .when('/Book/Add', {
+    template: '<div>Add</div>',
+  })
+  .when('/book/del',{
+  	template:'<div>/del</div>'
+  })
+
+  $locationProvider.html5Mode(true);
+
+});
+
+function MainCtrl($scope){
+  $scope.test = "123";
+}</script>
+  </body>
+
+</html>

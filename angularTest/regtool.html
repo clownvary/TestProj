@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			var getKey = function(type) {
+				var tb = [0, 5, 6, 'T', 'U', 'V', 7, 8, 9, 'A', 'D', 'H', 'I', 1, 4, 'J', 'K', 'L', 'B', 'C', 'M', 'N', 'O', 2, 3, 'P', 'E', 'F', 'G', 'Q', 'X', 'Y', 'Z', 'R', 'S', 'W'];
+				var pro = ['T', 'U', 0, 'V', 'A', 'D', 5, 6, 8, 4, 'J', 'K', 9, 'H', 'I', 'L', 'B', 'C', 2, 'M', 'Y', 'N', 'Z', 'S', 1, 7, 'W', 'O', 'F', 'G', 3, 'P', 'R', 'E', 'Q', 'X'];
+				var no = document.getElementById("num").value;
+				var r = /^\d{8}$/;
+				if (!r.test(no)) {
+					alert("不是有效的机器码，请重新输入！");
+				} else {
+					var pos, dist_no = '';
+					for (var i = 0; i < no.length; i++) {
+						var cur_num = no.substring(i, i + 1)
+						if (cur_num == '0' || cur_num == '1') {
+							pos = 1
+							
+						} else {
+							pos = Math.floor(cur_num / 2);
+						}
+						if(type==1)
+						{
+							dist_no = dist_no + pro[4 * i + pos-1];
+						}else
+						{
+							dist_no = dist_no + tb[4 * i + pos-1];
+						}
+						
+					}
+					document.getElementById("dist_no").innerText = dist_no;
+				}
+			}
+			window.onload = function() {
+				document.getElementById("creat").addEventListener("click", function() {
+					 if (document.getElementsByName("rd")[0].checked==true)
+					 {
+					 	getKey(1)
+					 }else
+					 {
+					 	getKey(2)
+					 }
+				});
+			}
+		</script>
+		<title>微信助手V2.0注册机(pc版)</title>
+	</head>
+
+	<body>
+		<div style="  margin: auto;width: 400px;">
+			<span>待注册的机器码：</span>
+			<input type="text" name="num" id="num" value="" placeholder="请输入待注册的机器码" />
+			<br />
+			<input type="radio" name="rd" value="1"  style="display: none;"/><!--代理商授权码-->
+			<input type="radio" name="rd" value="2" checked="checked" />客户授权码
+			<br />
+			<button id="creat" style="float: left;margin-top: 10px;">生成授权码</button>
+
+			<label id="dist_no" style="  float: left;margin-top: 10px;margin-left: 50px;color: red;"></label>
+		</div>
+	</body>
+
+</html>

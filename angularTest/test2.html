@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="HideAnkSeek">
+
+	<head>
+		<meta charset="utf-8">
+		<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<!--<div style="width: 200px;height: 300px;" wildcat>一碰我就跑~~来点我啊~~</div>-->
+		<span wildcat>我是测试</span>
+		<script type="text/javascript">
+			angular.module("HideAnkSeek", []).directive("wildcat", function($document) {
+				
+				var maxLeft = 400,
+					maxTop = 300;
+				var msg = ["我闪~~", "抓我呀~~~", "雅蠛蝶~~", "噢耶~~", "你真逊~！", "就差那么一点点了！", "继续吧~~总有一天我会累的"];
+				return function(scope, element, attr) {
+					element.css({
+						"position": "absolute",
+						"border": "1px solid green"
+					});
+					element.bind("mouseenter", function(event) {
+						element.css({
+							"left": parseInt(Math.random() * 10000 % maxLeft) + "px",
+							"top": parseInt(Math.random() * 10000 % maxTop) + "px"
+						
+						}).text(msg[parseInt(Math.random() * 10000 % msg.length)]);
+					}).bind("click", function(event) {
+						element.text("噢My Lady Gaga。。。被你逮到了。。。");
+						element.unbind("mouseenter");
+					});
+				};
+			});
+		</script>
+	</body>
+
+</html>
